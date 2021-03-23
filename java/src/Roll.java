@@ -21,7 +21,7 @@ public class Roll {
 
     public Roll(String formula) {
 
-        if (Integer.valueOf(formula.charAt(0)) >= 97) {
+        if (Integer.valueOf(formula.charAt(0)) >= 97 && Integer.valueOf(formula.charAt(0)) == 100) {
             // 1 seul dé à lancer
 
             this.nbRoll = 1;
@@ -39,7 +39,7 @@ public class Roll {
                 }
             }
 
-        } else {
+        } else if(Integer.valueOf(formula.charAt(0)) <= 97){
             // 2 dés à lancer
 
             this.nbRoll = Integer.valueOf(formula.charAt(0)) - 48;
@@ -62,6 +62,8 @@ public class Roll {
 
             }
 
+        }else{
+            y=1;
         }
 
     }
