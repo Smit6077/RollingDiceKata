@@ -17,6 +17,7 @@ public class Roll {
     private Dice dice;
     public int result;
     public int x =0;
+    public int y = 0;
 
     public Roll(String formula) {
 
@@ -53,7 +54,12 @@ public class Roll {
                 } else if (Integer.valueOf(formula.charAt(3)) == 45) {
                     isPositive = false;
                     this.modifier = Integer.valueOf(formula.charAt(4)) - 48;
+                }else{
+                    y=1;
                 }
+
+
+
             }
 
         }
@@ -73,6 +79,10 @@ public class Roll {
     public int makeRoll(RollType rollType) {
 
         this.dice = new Dice(diceValue);
+
+        if(y==1){
+            return -1;
+        }
 
         if(x!=1) {
 
