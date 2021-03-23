@@ -13,48 +13,49 @@ public class Roll {
     private int diceValue;
     private int nbRoll;
     private int modifier;
-    private boolean isPositive;
+    private boolean isPositive = true ;
     private Dice dice;
     public int result;
     public int x =0;
 
-   
-
     public Roll(String formula) {
 
         if (Integer.valueOf(formula.charAt(0)) >= 97) {
-                this.nbRoll = 1;
-                this.diceValue = Integer.valueOf(formula.charAt(1)) - 48;
-                this.modifier = Integer.valueOf(formula.charAt(3)) - 48;
+            // 1 seul dé à lancer
 
+            this.nbRoll = 1;
+            this.diceValue = Integer.valueOf(formula.charAt(1)) - 48;
+            this.modifier = Integer.valueOf(formula.charAt(3)) - 48;
+
+            if(formula.length() >3) {
 
                 if (Integer.valueOf(formula.charAt(2)) == 43) {
                     isPositive = true;
                 } else if (Integer.valueOf(formula.charAt(2)) == 45) {
                     isPositive = false;
                 }
-
+            }
 
         } else {
+            // 2 dés à lancer
 
+            this.nbRoll = Integer.valueOf(formula.charAt(0)) - 48;
+            this.diceValue = Integer.valueOf(formula.charAt(2)) - 48;
+            this.modifier = 0;
 
-                this.nbRoll = Integer.valueOf(formula.charAt(0)) - 48;
-                this.diceValue = Integer.valueOf(formula.charAt(2)) - 48;
-                this.modifier = Integer.valueOf(formula.charAt(4)) - 48;
+            if(formula.length() >3) {
 
                 if (Integer.valueOf(formula.charAt(3)) == 43) {
                     isPositive = true;
-                    System.out.println("Bonjour");
-
+                    this.modifier = Integer.valueOf(formula.charAt(4)) - 48;
                 } else if (Integer.valueOf(formula.charAt(3)) == 45) {
                     isPositive = false;
-                    System.out.println("Non");
-
+                    this.modifier = Integer.valueOf(formula.charAt(4)) - 48;
                 }
-
+            }
 
         }
-        x= 2;
+
     }
 
 
@@ -75,9 +76,14 @@ public class Roll {
 
             if (isPositive == true) {
                 result = nbRoll * this.dice.rollDice() + modifier;
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+
             } else {
                 result = nbRoll * this.dice.rollDice() - modifier;
+                System.out.println(result);
+
             }
+
 
         }else {
 
@@ -85,19 +91,20 @@ public class Roll {
 
         }
 
-            System.out.println(nbRoll);
-            System.out.println(modifier);
-            System.out.println(this.dice.rollDice());
 
-            System.out.println(result);
+        System.out.println(nbRoll);
+        System.out.println(modifier);
+        System.out.println(this.dice.rollDice());
 
-            if (result < 0) {
-                result = 0;
-            }
+        System.out.println(result);
 
-            if (nbRoll <= 0 || diceValue <= 0) {
-                result = -1;
-            }
+        if (result < 0) {
+            result = 0;
+        }
+
+        if (nbRoll <= 0 || diceValue <= 0) {
+            result = -1;
+        }
 
         return result;
 
@@ -105,4 +112,5 @@ public class Roll {
     }
 
 }
+
 
