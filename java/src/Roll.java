@@ -25,14 +25,16 @@ public class Roll {
 
             this.nbRoll = 1;
             this.diceValue = Integer.valueOf(formula.charAt(1)) - 48;
-            this.modifier = Integer.valueOf(formula.charAt(3)) - 48;
+            this.modifier = 0;
 
-            if(formula.length() >3) {
+            if(formula.length() >2) {
 
                 if (Integer.valueOf(formula.charAt(2)) == 43) {
                     isPositive = true;
+                    this.modifier = Integer.valueOf(formula.charAt(3)) - 48;
                 } else if (Integer.valueOf(formula.charAt(2)) == 45) {
                     isPositive = false;
+                    this.modifier = Integer.valueOf(formula.charAt(3)) - 48;
                 }
             }
 
@@ -112,5 +114,6 @@ public class Roll {
     }
 
 }
+
 
 
