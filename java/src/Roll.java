@@ -18,7 +18,7 @@ public class Roll {
     public int result;
     public int x =0;
 
-    private String[] formula2;
+   
 
     public Roll(String formula) {
 
